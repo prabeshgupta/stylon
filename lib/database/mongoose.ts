@@ -1,4 +1,5 @@
 // Estabishing the database connection and caching database for optimization
+//NextJS is serverless which means stateless. Once it initiate the connection and after receiving the response it closes the connection
 
 import mongoose, { Mongoose } from "mongoose";
 
@@ -18,7 +19,7 @@ if (!cached) {
     }
 }
 
-export const ConnectToDatabase = async () => {
+export const connectToDatabase = async () => {
     if (cached.conn) return cached.conn;
 
     if (!MONGODB_URL) throw new Error("MONGODB_URL missing");
