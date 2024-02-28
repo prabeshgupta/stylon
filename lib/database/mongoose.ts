@@ -1,5 +1,5 @@
 // Estabishing the database connection and caching database for optimization
-//NextJS is serverless which means stateless. Once it initiate the connection and after receiving the response it closes the connection
+//NextJS runs in serverless environment which means stateless. Once it initiate the connection and after receiving the response  it closes the connection
 
 import mongoose, { Mongoose } from "mongoose";
 
