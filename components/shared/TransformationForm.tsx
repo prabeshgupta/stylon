@@ -2,6 +2,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import TransformedImage from "./TransformedImage";
 
 import {
     Select,
@@ -28,6 +29,7 @@ import { CustomField } from "./CustomField"
 import { useState, useTransition } from "react"
 import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
 import MediaUploader from "./MediaUploader"
+import { updateCredits } from "@/lib/actions/user.actions";
 
 export const formSchema = z.object({
     title: z.string(),
@@ -107,7 +109,7 @@ const TransformationForm = ({ action, data = null, type, userId, creditBalance, 
         setNewTransformation(null);
 
         startTransition(async () => {
-            //await updateCredits(userId, creditFee)
+            await updateCredits(userId, -1)
         })
     }
 
@@ -208,6 +210,15 @@ const TransformationForm = ({ action, data = null, type, userId, creditBalance, 
                                 type={type}
                             />
                         )}
+                    />
+
+                    <TransformedImage
+                        image={image}
+                        type={type}
+                        title={form.getValues().title}
+                        isTransforming={isTransforming}
+                        setIsTransforming={setIsTransforming}
+                        transformationConfig={transformationConfig}
                     />
                 </div>
 
