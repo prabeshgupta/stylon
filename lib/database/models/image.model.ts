@@ -38,8 +38,6 @@ const ImageSchema = new Schema({
     updatedAt: { type: Date, default: Date.now }
 });
 
-// Schema to Model
-
 const Image = models?.Image || model('Image', ImageSchema);
 
 export default Image;
